@@ -1,0 +1,60 @@
+@charset "utf-8";
+body{
+	font-family: Verdana, Arial;
+	word-wrap: break-word;
+}
+
+header{
+	height: 125px;
+	background-color: #dedede;
+	background-image: url('./img/bg_1.png');
+	background-position: center top;
+	background-repeat: repeat-x;
+	padding-top: 10px;
+}
+	header h1{
+		overflow: hidden;
+		width: 89px;
+		height: 69px;
+		margin: 0 auto;
+		border-radius: 2px 1px 2px 1px;
+	}
+
+
+.main>div{
+	padding-bottom: 30px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+@media (min-width: 992px) { /* For PC */
+ 
+.main {
+	overflow: hidden;
+	width: 900px;
+	margin: 50px auto 0;
+}
+
+.main>div{
+	margin: 0;
+}
+
+.main .left {
+	width: 200px;
+	float: left;
+}
+
+.main .center {
+	width: 440px;
+	float: left;
+}
+
+.main .right {
+	width: 200px;
+	float: right;
+}
+	.main .right h2{
+		text-align: center;
+	}
+ 
+}
