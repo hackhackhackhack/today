@@ -5,6 +5,8 @@
   <title>Noise Traning Session</title>
   <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
   <link rel="stylesheet" href="./style.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -15,26 +17,35 @@
 
 <div class="main">
   <div class="left">
-    <br>
     <ul>
       <li>・<a href="./">sound</a></li>
       <li>・<a href="./">visual</a></li>
     </ul>
   </div><!-- .left -->
   <div class="center">
-    <div class="article">
-      <h3>Contents</h3>
-      <p>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
-    </div>
+    <h2>Contents</h2>
+
+      <div class="article">
+        <h4><a href="./content/volume1">Anti Satori <i class="fa fa-diamond"></i> live音源</a></h4>
+        <p class="meta"><span class="date">2015/02/15</span><br>by <a class="author">Karamazov</a></p>
+      </div>
+
   </div><!-- .left -->
   <div class="right">
-    <h2>Top Rated</h2>
+    <h2>Author</h2>
     <ul>
-      <li>・<a href="./"></a></li>
+      <li>・<a href="./">Karamazov</a></li>
     </ul>
   </div><!-- .left -->
 </div>
 
 <footer></footer>
+<!-- audio.js -->
+<script src="./js/audiojs/audio.min.js"></script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
 </body>
 </html>

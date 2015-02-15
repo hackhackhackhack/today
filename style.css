@@ -1,9 +1,15 @@
 @charset "utf-8";
+html,body { height:100%; }
 body{
+	font-size: 12px;
 	font-family: Verdana, Arial;
-	word-wrap: break-word;
-}
-
+	word-wrap: break-word; }
+a{ 	color: red;
+	cursor: pointer;
+	text-decoration: none; }
+	a:hover{ text-decoration: underline; }
+h2{ font-size: 15px;
+	height: 25px;}
 header{
 	height: 125px;
 	background-color: #dedede;
@@ -20,16 +26,35 @@ header{
 		border-radius: 2px 1px 2px 1px;
 	}
 
-
+.main {
+	min-height: 100%;
+	overflow: hidden;
+	margin: 50px auto 0;
+	padding-bottom: 100px;
+}
 .main>div{
 	padding-bottom: 30px;
 	width: 80%;
 	margin: 0 auto;
 }
-
+	.main .center h2{ height: 45px; }	
+	.main>div.center .article {
+		overflow: hidden;
+		border-bottom: 1px solid #dedede;
+		margin-bottom: 19px;
+	}
+		.main .article h4{
+			float: left;
+			max-width: 350px;
+			font-weight: bold; }
+			.main .article h4 a{
+				color: #000;}
+				.main .article h4 a:hover{ color: red; }
+		.main .article .meta {
+			float: right;
+			width: 90px;
+			padding-bottom: 10px; }
 footer{
-	position: absolute;
-	bottom: 0;
 	height: 125px;
 	width: 100%;
 	background-color: #1f1f1f;
@@ -37,9 +62,7 @@ footer{
 @media (min-width: 992px) { /* For PC */
  
 .main {
-	overflow: hidden;
 	width: 900px;
-	margin: 50px auto 0;
 }
 
 .main>div{
@@ -49,19 +72,33 @@ footer{
 .main .left {
 	width: 200px;
 	float: left;
+	padding-top: 0px;
 }
 
 .main .center {
-	width: 440px;
+	width: 460px;
 	float: left;
 }
 
 .main .right {
-	width: 200px;
+	width: 150px;
 	float: right;
 }
 	.main .right h2{
-		text-align: center;
+		padding-left: 12px;
 	}
  
+}/* PC */
+
+
+
+/****
+** single
+*/
+.single .article h4{
+	float: none;
+	padding-bottom: 20px;
+}
+.single .article p{
+	padding-bottom: 15px;
 }
