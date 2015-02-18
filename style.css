@@ -41,12 +41,14 @@ header{
 	.main>div.center .article {
 		overflow: hidden;
 		border-bottom: 1px solid #dedede;
-		margin-bottom: 19px;
+		margin-bottom: 15px;
 	}
 		.main .article h4{
 			float: left;
 			max-width: 350px;
 			font-weight: bold; }
+			.main .article.first h4{
+			font-size: 140%; }
 			.main .article h4 a{
 				color: #000;}
 				.main .article h4 a:hover{ color: red; }
@@ -74,18 +76,25 @@ footer{
 }
 
 .main .left {
-	width: 200px;
+	width: 175px;
 	float: left;
 	padding-top: 0px;
 }
 
 .main .center {
-	width: 460px;
+	width: 500px;
 	float: left;
 }
+	.main .center .article{
+		padding-left: 10px;
+		margin-left: 20px; }
+		.main .center .article.first{
+			padding-left: 0px;
+			margin-left: 0px;
+			margin-bottom: 25px; }
 
 .main .right {
-	width: 150px;
+	width: 200px;
 	float: right;
 }
 	.main .right h2{
@@ -108,3 +117,11 @@ footer{
 .single .article p{
 	padding-bottom: 15px;
 }
+@media (min-width: 992px) { /* For PC */
+	.single .main .center{
+		width: 460px;
+	}
+	.single .main .center .article{
+		padding-left: 0;
+		margin-left: 0; }
+}/* PC */
