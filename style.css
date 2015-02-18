@@ -43,6 +43,8 @@ header{
 		border-bottom: 1px solid #dedede;
 		margin-bottom: 15px;
 	}
+	.main .center .article.first{
+			margin-bottom: 25px; }
 		.main .article h4{
 			float: left;
 			max-width: 350px;
@@ -90,8 +92,7 @@ footer{
 		margin-left: 20px; }
 		.main .center .article.first{
 			padding-left: 0px;
-			margin-left: 0px;
-			margin-bottom: 25px; }
+			margin-left: 0px; }
 
 .main .right {
 	width: 200px;
