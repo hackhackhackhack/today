@@ -78,7 +78,7 @@ footer{
 }
 
 .main .left {
-	width: 175px;
+	width: 180px;
 	float: left;
 	padding-top: 0px;
 }
@@ -95,7 +95,7 @@ footer{
 			margin-left: 0px; }
 
 .main .right {
-	width: 200px;
+	width: 130px;
 	float: right;
 }
 	.main .right h2{
@@ -120,7 +120,7 @@ footer{
 }
 @media (min-width: 992px) { /* For PC */
 	.single .main .center{
-		width: 460px;
+		/*width: 460px;*/
 	}
 	.single .main .center .article{
 		padding-left: 0;
