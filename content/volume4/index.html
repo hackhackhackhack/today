@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Noise Traning Session</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+  <link rel="stylesheet" href="../../style.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body class="single">
+
+<header>
+  <!-- Please Contents ! It's my FOOD ! -->
+  <!-- <h1 title="noise traning session"><img src="./img/title.png" alt="noise traning session"></h1> -->
+</header>
+
+<div class="main">
+  <div class="left">
+    <ul>
+      <li>・<a href="./">sound</a></li>
+      <li>・<a href="./">visual</a></li>
+      <br>
+      <li>・<a href="../../">home</a></li>
+    </ul>
+  </div><!-- .left -->
+  <div class="center">
+    <h2>Contents</h2>
+
+      <div class="article">
+        <h4>Undefined <i class="fa fa-chain-broken"></i> 2dCG</h4>
+        <p><canvas id="spiral1" width='500px' height="500px"></canvas></p>
+        <p><canvas id="spiral2" width='500px' height="500px"></canvas></p>
+        <p><canvas id="spiral3" width='500px' height="500px"></canvas></p>
+
+        <p class="meta"><span class="date">2015/03/01</span><br>by <a class="author">Nonhuman</a></p>
+      </div>
+
+  </div><!-- .left -->
+  <div class="right">
+    <h2>Author</h2>
+    <ul>
+      <li>・<a href="./">Karamazov</a></li>
+      <li>・<a href="./">Beer</a></li>
+      <li>・<a href="./">Nonhuman</a></li>
+    </ul>
+  </div><!-- .left -->
+</div>
+
+<footer></footer>
+<!-- audio.js -->
+<script src="../../js/audiojs/audio.min.js"></script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+<script>
+
+var rotate1 = 0;
+
+testTimer = setInterval( function(){
+  draw1(rotate1);
+  rotate1 += 25;
+  if( rotate1 > 1775){ clearInterval(testTimer); }
+  
+}, 100);
+
+function draw1( rotate ) {
+//描画コンテキストの取得
+var canvas = document.getElementById('spiral1');
+
+    if(!canvas || !canvas.getContext) return false;
+
+    var ctx = canvas.getContext('2d');
+    //カンバスのサイズ
+    var WIDTH = canvas.offsetWidth;
+    var HEIGHT = canvas.offsetHeight;
+    //原点の座標
+    var centerX = WIDTH/2;
+    var centerY = HEIGHT/2;
+
+    var dis = 250;
+    var fai = ( (1 + Math.sqrt(5)) / 2 ); // golden ratio
+    centerY -= 0;
+
+    var x = 0;
+    var y = 0;
+
+    //色を指定する
+      ctx.moveTo(centerX + x, centerY + y);
+      var deg = 72 + rotate;
+      deg += 108;
+
+      var d = 0;
+      for( var i = 0; i < 10; i++)
+      {
+        //Spiral draw
+        deg += 108;
+        dis = dis / fai;
+        x = Math.cos(deg * Math.PI / 180) * (dis/fai) + x;
+        y = Math.sin(deg * Math.PI / 180) * (dis/fai) + y;
+        var x0 = Math.cos(deg * Math.PI / 180) * (dis) + x;
+        var y0 = Math.sin(deg * Math.PI / 180) * (dis) + y;
+
+        ctx.lineWidth=0.5;
+        ctx.strokeStyle = 'rgba(255,0,0,0.2)';
+        ctx.beginPath();
+        ctx.moveTo(centerX + x0, centerY + y0);
+        d = deg;
+        for (var j = 0; j <= 108; j++)
+        {
+          d++;
+          x0 = Math.cos(d * Math.PI / 180) * (dis) + x;
+          y0 = Math.sin(d * Math.PI / 180) * (dis) + y;
+          ctx.lineTo(centerX + x0, centerY + y0);
+        }
+        ctx.stroke();
+      }   
+};
+</script>
+<script>
+
+var rotate2 = 0;
+
+window.setInterval( function(){
+  draw2(rotate2);
+  rotate2 -= 25;
+}, 100);
+
+
+function draw2( rotate ) {
+//描画コンテキストの取得
+var canvas = document.getElementById('spiral2');
+
+    if(!canvas || !canvas.getContext) return false;
+
+    var ctx = canvas.getContext('2d');
+    //カンバスのサイズ
+    var WIDTH = canvas.offsetWidth;
+    var HEIGHT = canvas.offsetHeight;
+    //原点の座標
+    var centerX = WIDTH/2;
+    var centerY = HEIGHT/2;
+
+        ctx . clearRect(0, 0, WIDTH, HEIGHT);
+
+    var dis = 5;
+    var fai = ( (1 + Math.sqrt(5)) / 2 ); // golden ratio
+
+    var x = 0;
+    var y = 0;
+
+    //色を指定する
+
+      var deg = 0 + rotate;
+
+      var d = 0;
+        var red = 0;
+      for( var i = 0; i < 10; i++)
+      {
+
+        //Spiral draw
+        deg += 108;
+        dis = dis * fai;
+        x = Math.cos(deg * Math.PI / 180) * (dis/fai) + x;
+        y = Math.sin(deg * Math.PI / 180) * (dis/fai) + y;
+        var x0 = Math.cos(deg * Math.PI / 180) * (dis) + x;
+        var y0 = Math.sin(deg * Math.PI / 180) * (dis) + y;
+
+        ctx.lineWidth=0.5;
+            red += 50;
+        ctx.strokeStyle = 'rgba('+red+',0,0,0.5)';
+        ctx.beginPath();
+        ctx.moveTo( centerX + x0, centerY + y0);
+        d = deg;
+        for (var j = 0; j <= 142; j++)
+        {
+          d++;
+          x0 = Math.cos(d * Math.PI / 180) * (dis) + x + j ;
+          y0 = Math.sin(d * Math.PI / 180) * (dis) + y ;
+          ctx.lineTo(centerX + x0, centerY + y0);
+        }
+        ctx.stroke();
+      }   
+};
+</script>
+<script>
+
+var rotate3 = 0;
+var swch = 1;
+
+window.setInterval( function(){
+  draw3(rotate3);
+    if( swch == 1 ){
+        rotate3++;
+        if (rotate3 > 10) { swch = 0; }
+    }else{
+        rotate3--;
+        if (rotate3 < 0) { swch = 1; }
+    }
+}, 50);
+
+
+function draw3( rotate ) {
+//描画コンテキストの取得
+var canvas = document.getElementById('spiral3');
+
+    if(!canvas || !canvas.getContext) return false;
+
+    var ctx = canvas.getContext('2d');
+    //カンバスのサイズ
+    var WIDTH = canvas.offsetWidth;
+    var HEIGHT = canvas.offsetHeight;
+    //原点の座標
+    var centerX = WIDTH/2;
+    var centerY = HEIGHT/2;
+
+        ctx . clearRect(0, 0, WIDTH, HEIGHT);
+        ctx.lineWidth=0.5;
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        ctx.beginPath();
+        //ctx.moveTo( centerX , centerY );
+
+    var r=function(theta){
+            var a=3 + rotate;
+            var b=0.15;//ここは適当です。
+            return a*Math.pow(Math.E,b*(theta));
+        }
+        for(var theta=0;theta<2160;theta+=5){
+            theta1 = theta;
+            rad = theta1/180*Math.PI;
+            ctx.lineTo( centerX + r(rad)*Math.sin(rad), centerY + r(rad)*Math.cos(rad));
+
+        }
+        ctx.stroke(); 
+};
+</script>
+</body>
+</html>
