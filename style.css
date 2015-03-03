@@ -43,6 +43,8 @@ header{
 		border-bottom: 1px solid #dedede;
 		margin-bottom: 15px;
 	}
+	.main .center .page {
+		padding-bottom: 20px;}
 	.main .center .article.first{
 			margin-bottom: 25px; }
 		.main .article h4{

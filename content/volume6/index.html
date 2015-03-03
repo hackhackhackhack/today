@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Noise Traning Session</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+  <link rel="stylesheet" href="../../style.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body class="single">
+
+<header>
+  <!-- Please Contents ! It's my FOOD ! -->
+  <!-- <h1 title="noise traning session"><img src="./img/title.png" alt="noise traning session"></h1> -->
+</header>
+
+<div class="main">
+  <div class="left">
+    <ul>
+      <li>・<a href="./">sound</a></li>
+      <li>・<a href="./">visual</a></li>
+      <br>
+      <li>・<a href="../../">home</a></li>
+    </ul>
+  </div><!-- .left -->
+  <div class="center">
+    <h2>Contents</h2>
+
+      <div class="article">
+        <h4>Undefined <i class="fa fa-chain-broken"></i> 純正律2dCG</h4>
+        <p><canvas id="spiral" width='500px' height="500px"></canvas><br>　
+        <input name="chk" type="radio" id="to_off" checked> <label for="to_off">off</label>
+        　
+        <input name="chk" type="radio" id="to_oct"> <label for="to_oct">Octave</label>
+        　
+        <input name="chk" type="radio" id="to_4"> <label for="to_4">4th</label>
+        <input name="chk" type="radio" id="to_5"> <label for="to_5">5th</label>
+        　
+        <input name="chk" type="radio" id="to_3"> <label for="to_3">3th</label>
+        <input name="chk" type="radio" id="to_6"> <label for="to_6">6th</label>
+        　
+        <a href="http://www.mc-taichi.com/music/theory/scale.html" target="_blank">#Ref.</a>
+        </p>
+<script>
+
+//get elements function
+var $ = function(id){ return document.getElementById(id) };
+var rotate = 0;
+var focus = 0;
+
+window.setInterval( function(){
+
+         if( $('to_off').checked == 1 ) { focus = 0 ; } 
+    else if( $('to_oct').checked == 1 ) { focus = 1 ; }
+    else if( $('to_5').checked == 1 )   { focus = 2 ; }
+    else if( $('to_4').checked == 1 )   { focus = 3 ; }
+    else if( $('to_3').checked == 1 )   { focus = 4 ; }
+    else if( $('to_6').checked == 1 )   { focus = 5 ; }
+
+  draw(rotate, focus);
+        rotate++;
+}, 50);
+
+function draw( rotate ) {
+//描画コンテキストの取得
+var canvas = document.getElementById('spiral');
+
+    if(!canvas || !canvas.getContext) return false;
+
+    var ctx = canvas.getContext('2d');
+    //カンバスのサイズ
+    var WIDTH = canvas.offsetWidth;
+    var HEIGHT = canvas.offsetHeight;
+    //原点の座標
+    var centerX = WIDTH/2;
+    var centerY = HEIGHT/2;
+
+        ctx . clearRect(0, 0, WIDTH, HEIGHT);
+        ctx.lineWidth=0.5;
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        
+        //ctx.moveTo( centerX , centerY );
+
+        var d = Math.sin( 2 * Math.PI * 1 * rotate / 90);
+        var top = 200;
+        for( i=0; i<=7; i++){
+            if( focus == 1 && ( i == 0 || i == 1 || i == 3 || i == 7 ) ){ ctx.strokeStyle = 'rgba(255,0,0,1)'; }
+                else if(focus == 1 && ( i != 0 && i != 1 && i != 3 && i != 7 )){ ctx.strokeStyle = 'rgba(0,0,0,1)'; } else 
+            if( focus == 2 && ( i == 2 || i == 3 ) ){ ctx.strokeStyle = 'rgba(255,0,0,1)'; }
+                else if( focus == 2 && ( i != 2 && i != 3 ) ){ ctx.strokeStyle = 'rgba(0,0,0,1)'; } else 
+            if( focus == 3 && ( i == 3 || i == 4 ) ){ ctx.strokeStyle = 'rgba(255,0,0,1)'; }
+                else if( focus == 3 && ( i != 3 && i != 4 ) ){ ctx.strokeStyle = 'rgba(0,0,0,1)'; } else
+            if( focus == 4 && ( i == 4 || i == 5 ) ){ ctx.strokeStyle = 'rgba(255,0,0,1)'; }
+                else if( focus == 4 && ( i != 4 && i != 5 ) ){ ctx.strokeStyle = 'rgba(0,0,0,1)'; } else
+            if( focus == 5 && ( i == 2 || i == 4 ) ){ ctx.strokeStyle = 'rgba(255,0,0,1)'; }
+                else if( focus == 5 && ( i != 2 && i != 4 ) ){ ctx.strokeStyle = 'rgba(0,0,0,1)'; }
+            ctx.beginPath();
+            ctx.moveTo( 0 , centerY - top );
+            for(var theta=0;theta<500;theta++){
+                x = theta + centerX - 250;
+                y = Math.sin( 2 * Math.PI * 1/2 * (i+1) * theta / 500) * 20 * d + centerY - top; 
+                ctx.lineTo( x, y);
+            }
+            ctx.moveTo( 0 , centerY - top );
+            for(var theta=0;theta<500;theta++){
+                x = theta + centerX - 250;
+                y = -Math.sin( 2 * Math.PI * 1/2 * (i+1) *theta / 500) * 20 * d + centerY - top; 
+                ctx.lineTo( x, y);
+            }
+            top -= 60;
+            ctx.stroke();   
+        }
+        
+};
+// ref -> http://www.mc-taichi.com/music/theory/scale.html
+</script>
+
+        <p class="meta"><span class="date">2015/03/04</span><br>by <a class="author">Nonhuman</a></p>
+      </div>
+
+  </div><!-- .left -->
+  <div class="right">
+    <h2>Author</h2>
+    <ul>
+      <li>・<a href="./">Karamazov</a></li>
+      <li>・<a href="./">Beer</a></li>
+      <li>・<a href="./">Nonhuman</a></li>
+    </ul>
+  </div><!-- .left -->
+</div>
+
+<footer></footer>
+<!-- audio.js -->
+<script src="../../js/audiojs/audio.min.js"></script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+
+</body>
+</html>
