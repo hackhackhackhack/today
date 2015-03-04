@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Noise Traning Session</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+  <link rel="stylesheet" href="../../style.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body class="single">
+
+<header>
+  <!-- Please Contents ! It's my FOOD ! -->
+  <!-- <h1 title="noise traning session"><img src="./img/title.png" alt="noise traning session"></h1> -->
+</header>
+
+<div class="main">
+  <div class="left">
+    <ul>
+      <li>・<a href="./">sound</a></li>
+      <li>・<a href="./">visual</a></li>
+      <br>
+      <li>・<a href="../../">home</a></li>
+    </ul>
+  </div><!-- .left -->
+  <div class="center">
+    <h2>Contents</h2>
+
+      <div class="article">
+        <h4>Undefined <i class="fa fa-chain-broken"></i> 2dCG</h4>
+        <p>
+          <canvas id="spiral" width='500px' height="500px"></canvas><br>　
+          <a target="_blank" href="http://ja.wikipedia.org/wiki/%E3%83%95%E3%83%BC%E3%82%B3%E3%83%BC%E3%81%AE%E6%8C%AF%E3%82%8A%E5%AD%90">#Ref</a>
+        </p>
+         <p>
+          <canvas id="spiral2" width='500px' height="500px"></canvas><br>　
+        </p>
+<script>
+
+//get elements function
+var $ = function(id){ return document.getElementById(id) };
+var rotate = 0;
+
+var temp_x;
+var temp_y = 0;
+
+testTimer = setInterval( function(){
+  draw(rotate);
+        rotate++;
+    if( rotate > 7830){ clearInterval(testTimer); }
+}, 1);
+
+function draw( rotate ) {
+//描画コンテキストの取得
+var canvas = document.getElementById('spiral');
+
+    if(!canvas || !canvas.getContext) return false;
+
+    var ctx = canvas.getContext('2d');
+    //カンバスのサイズ
+    var WIDTH = canvas.offsetWidth;
+    var HEIGHT = canvas.offsetHeight;
+    //原点の座標
+    var centerX = WIDTH/2;
+    var centerY = HEIGHT/2;
+
+        ctx.lineWidth=0.5;
+        ctx.strokeStyle = 'rgba(255, 188, 0,1)';
+        
+        ctx.beginPath();
+
+        var f = Math.sin( 2 * Math.PI * 1 * rotate / 116 );
+        var r = 250 * f;
+        if( rotate == 0 ){ temp_x = r; }
+        ctx.moveTo( centerX + temp_x , centerY + temp_y ); 
+        //
+        
+        x = r * Math.cos( 2 * Math.PI * 1 * rotate / 540 );    
+        y = r * Math.sin( 2 * Math.PI * 1 * rotate / 540 );
+        
+        ctx.lineTo( centerX + x, centerY + y);
+        ctx.stroke(); 
+
+        temp_x = x;
+        temp_y = y;
+        
+};
+// ref -> http://ja.wikipedia.org/wiki/%E3%83%95%E3%83%BC%E3%82%B3%E3%83%BC%E3%81%AE%E6%8C%AF%E3%82%8A%E5%AD%90
+</script>
+<script>
+
+//get elements function
+var $ = function(id){ return document.getElementById(id) };
+var rotate2 = 0;
+
+window.setInterval( function(){
+  draw2(rotate2);
+        rotate2++;
+}, 50);
+
+function draw2( rotate ) {
+//描画コンテキストの取得
+var canvas = document.getElementById('spiral2');
+
+    if(!canvas || !canvas.getContext) return false;
+
+    var ctx = canvas.getContext('2d');
+    //カンバスのサイズ
+    var WIDTH = canvas.offsetWidth;
+    var HEIGHT = canvas.offsetHeight;
+    //原点の座標
+    var centerX = WIDTH/2;
+    var centerY = HEIGHT/2;
+
+        ctx.lineWidth=0.5;
+        ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+        
+        ctx.beginPath();
+        ctx.moveTo( centerX , centerY );
+        var dx = Math.sin( 2 * Math.PI * 1.1 * rotate / 108)*250;
+        var dy = Math.sin( 2 * Math.PI * 1 * rotate / 108)*250;
+        ctx.lineTo( centerX + dx, centerY + dy);
+        ctx.stroke(); 
+        
+};
+// ref -> http://www.mc-taichi.com/music/theory/scale.html
+</script>
+        <p class="meta"><span class="date">2015/03/05</span><br>by <a class="author">Nonhuman</a></p>
+      </div>
+
+  </div><!-- .left -->
+  <div class="right">
+    <h2>Author</h2>
+    <ul>
+      <li>・<a href="./">Karamazov</a></li>
+      <li>・<a href="./">Beer</a></li>
+      <li>・<a href="./">Nonhuman</a></li>
+    </ul>
+  </div><!-- .left -->
+</div>
+
+<footer></footer>
+<!-- audio.js -->
+<script src="../../js/audiojs/audio.min.js"></script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+
+</body>
+</html>
