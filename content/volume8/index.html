@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Noise Traning Session</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+  <link rel="stylesheet" href="../../style.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body class="single">
+
+<header>
+  <!-- Please Contents ! It's my FOOD ! -->
+  <!-- <h1 title="noise traning session"><img src="./img/title.png" alt="noise traning session"></h1> -->
+</header>
+
+<div class="main">
+  <div class="left">
+    <ul>
+      <li>・<a href="./">sound</a></li>
+      <li>・<a href="./">visual</a></li>
+      <br>
+      <li>・<a href="../../">home</a></li>
+    </ul>
+  </div><!-- .left -->
+  <div class="center">
+    <h2>Contents</h2>
+
+      <div class="article">
+        <h4>Undefined <i class="fa fa-chain-broken"></i> Binarize App</h4>
+        <p>
+          <form id="dropfile">
+          <h3>Drop file here!</h3>
+          </form>
+          <br>
+          <input name="chk" type="radio" id="to_text"> <label for="to_text">Text</label><br>
+          <input name="chk" type="radio" id="to_bit" checked> <label for="to_bit">Binary</label><br>
+          <input name="chk" type="radio" id="to_16" > <label for="to_16">HEX</label>
+          <br>
+          <br>結果<br>
+          <textarea id="result" style="width:100%; height:200px; margin: 0 0 5px 0;" disabled></textarea>
+          <br>
+          <br>
+        </p>
+<script type="text/javascript">
+//匿名関数で実行
+(function(){
+  //get elements function
+  var $ = function(id){ return document.getElementById(id) };
+
+  //support check
+  if(!window.File){
+    $('result').value = "File クラスに対応していません。";
+    return;
+  }
+  if(!window.FileReader){
+    $('result').value = "FileReader クラスに対応していません。";
+    return;
+  }
+
+  var binarize = function(files){
+
+    var file = files[0];
+
+      //file info to console
+      console.log(
+        file.name + "\n" +
+        file.size + " byte\n" + 
+        file.type + "\n" +
+        file.lastModifiedDate);
+
+    //generate FileReader obj
+    var file_reader = new FileReader();
+
+    //read as text
+    if(file.type.indexOf("text") == 0 && $('to_text').checked == 1){
+
+      file_reader.onload = function(e){
+        $('result').value = file_reader.result;
+      };
+
+      //start read
+      file_reader.readAsText(file);
+
+    //read as binary or hexadecimal
+    }else{
+
+      file_reader.onload = function(e){
+        var result = "";
+        var ary_u8 = new Uint8Array(file_reader.result);
+        var i;
+        var str;
+        var num = ary_u8.length;
+
+
+        if($('to_bit').checked == 1){
+          for(i=0;i<num;i++){
+            if(ary_u8[i] < 10000000){ //zero-padding
+              str = ary_u8[i].toString(2);
+              result += ("0000000" + str).slice(-8);
+            }else{
+              result += ary_u8[i].toString(2);
+            }
+          }
+        }else{
+          for(i=0;i<num;i++){
+            if(ary_u8[i] <0x10){
+              str = "0" + ary_u8[i].toString(16);
+            }else{
+              str = ary_u8[i].toString(16);
+            }
+
+            if((i % 16) == 0){
+              result += str;
+            }else if((i % 16) == 15){
+              result += " " + str + "\n";
+            }else{
+              result += " " + str;
+            }
+          }
+        }
+        
+        $('result').value = result;
+      };
+      //start read
+      file_reader.readAsArrayBuffer(file);
+    }
+
+  } 
+
+  var ondragover = function (ev) {
+      ev.stopPropagation();
+      ev.preventDefault();
+      ev.dataTransfer.dropEffect = 'copy';
+  };
+  var ondrop = function (ev) {
+      ev.stopPropagation();
+      ev.preventDefault();
+      binarize(ev.dataTransfer.files);
+  };
+
+  $('dropfile').addEventListener('dragover', ondragover, false);
+  $('dropfile').addEventListener('drop', ondrop, false);
+})();
+</script>
+
+<style>
+#dropfile {
+  height: 200px;
+  color: #fff;
+  border:1px solid #333;
+  padding:0.5em;
+  background-color:#474747;
+  cursor: move; }
+#dropfile h3{
+  margin: 0 5px; }
+</style>
+        <p class="meta"><span class="date">2015/03/06</span><br>by <a class="author">Nonhuman</a></p>
+      </div>
+
+  </div><!-- .left -->
+  <div class="right">
+    <h2>Author</h2>
+    <ul>
+      <li>・<a href="./">Karamazov</a></li>
+      <li>・<a href="./">Beer</a></li>
+      <li>・<a href="./">Nonhuman</a></li>
+    </ul>
+  </div><!-- .left -->
+</div>
+
+<footer></footer>
+<!-- audio.js -->
+<script src="../../js/audiojs/audio.min.js"></script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+
+</body>
+</html>
