@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Noise Traning Session</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+  <link rel="stylesheet" href="../../style.css">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+</head>
+<body class="single">
+
+<header>
+  <!-- Please Contents ! It's my FOOD ! -->
+  <!-- <h1 title="noise traning session"><img src="./img/title.png" alt="noise traning session"></h1> -->
+</header>
+
+<div class="main">
+  <div class="left">
+    <ul>
+      <li>・<a href="./">sound</a></li>
+      <li>・<a href="./">visual</a></li>
+      <br>
+      <li>・<a href="../../">home</a></li>
+    </ul>
+  </div><!-- .left -->
+  <div class="center">
+    <h2>Contents</h2>
+
+      <div class="article">
+        <h4>Undefined <i class="fa fa-chain-broken"></i> 落下 2dCG</h4>
+        <p>
+          <canvas id="spiral" width='500px' height="500px"></canvas><br>
+          <span style="color:red;opacity:0.7;">earth</span>　<span style="color:blue;opacity:0.7;float:right;">moon</span>
+        </p>
+<script>
+
+//get elements function
+var $ = function(id){ return document.getElementById(id) };
+var rotate = 0;
+
+var temp_x = 0;
+var temp_y = 0;
+
+var vi = 0;
+var b_point = 0;
+var b_rate = 0.98; //反発係数
+var t = 0;
+var dir = 1;
+var no_bound = 0;
+
+var temp_x_m = 0;
+var temp_y_m = 0;
+
+var vi_m = 0;
+var b_point_m = 0;
+var b_rate_m = 0.98; //反発係数
+var t_m = 0;
+var dir_m = 1;
+var no_bound_m = 0;
+
+testTimer = setInterval( function(){
+  draw(rotate);
+    if( rotate >= 500 ){ dir = -1; if(no_bound==1 && no_bound_m==1){clearInterval(testTimer);} }
+    if( rotate <= 0 )  { dir =  1; if(no_bound==1 && no_bound_m==1){clearInterval(testTimer);} }
+    
+    rotate += 1*dir;
+    
+}, 1);
+
+function draw( rotate ) {
+//描画コンテキストの取得
+var canvas = document.getElementById('spiral');
+
+    if(!canvas || !canvas.getContext) return false;
+
+    var ctx = canvas.getContext('2d');
+    //カンバスのサイズ
+    var WIDTH = canvas.offsetWidth;
+    var HEIGHT = canvas.offsetHeight;
+    //原点の座標
+    var centerX = WIDTH/2;
+    var centerY = HEIGHT/2;
+
+        ctx.lineWidth=0.5;
+
+        // 地球
+        ctx.beginPath();
+        ctx.moveTo( rotate , temp_y ); 
+
+        y = b_point - (vi * t) + ( 9.80665 * t * t / 100 ) ; //上への等速運動 - 重力による落下運動
+        //色
+        ctx.strokeStyle = 'rgba(255,0,0,1)';
+
+        if ( y > 500 ) { 
+            t = 0;
+            vi = ( vi == 0)? vi = 9.80665 * 1.25 * b_rate : vi * b_rate;
+            b_point = 500;
+            if( vi < 1){ no_bound = 1; }
+            
+        }
+        ctx.lineTo( rotate, y);
+        ctx.stroke(); 
+
+        temp_x = t;
+        temp_y = y;
+
+        t++;      
+
+        //月
+        ctx.beginPath();
+        ctx.moveTo( rotate , temp_y_m ); 
+
+        y_m = b_point_m - (vi_m * t_m) + ( 1.622 * t_m * t_m / 100 ) ; //上への等速運動 - 重力による落下運動
+        //色
+        ctx.strokeStyle = 'rgba(0,0,255,1)';
+
+        if ( y_m > 500 ) { 
+            t_m = 0;
+            vi_m = ( vi_m == 0)? vi_m = 1.622 * 3 * b_rate_m : vi_m * b_rate_m;
+            b_point_m = 500;
+            if( vi_m < 1){ no_bound_m = 1; }
+            
+        }
+        ctx.lineTo( rotate, y_m);
+        ctx.stroke(); 
+        
+
+        temp_x_m = t_m;
+        temp_y_m = y_m;
+
+        t_m++;      
+};
+// ref -> http://wiredhiro.jp/blog/archives/1793
+</script>
+        <p class="meta"><span class="date">2015/03/07</span><br>by <a class="author">Nonhuman</a></p>
+      </div>
+
+  </div><!-- .left -->
+  <div class="right">
+    <h2>Author</h2>
+    <ul>
+      <li>・<a href="./">Karamazov</a></li>
+      <li>・<a href="./">Beer</a></li>
+      <li>・<a href="./">Nonhuman</a></li>
+    </ul>
+  </div><!-- .left -->
+</div>
+
+<footer></footer>
+<!-- audio.js -->
+<script src="../../js/audiojs/audio.min.js"></script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+</script>
+
+</body>
+</html>
